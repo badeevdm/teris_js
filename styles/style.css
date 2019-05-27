@@ -38,3 +38,8 @@ body {
     height: 50px;
     border: 1px solid #ccc;
 }
+
+.figure {
+    background-color: #1e488c;
+    border: 1px solid white;
+}
