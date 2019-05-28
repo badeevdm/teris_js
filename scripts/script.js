@@ -22,7 +22,7 @@ for (let i = 18; i >= 1; i--) {
     }
 }
 
-let x = 5, y = 9;
+let x = 5, y = 15;
 
 let mainArr = [
     //палка
@@ -97,9 +97,110 @@ create();
 function move() {
     moving = true;
     let coordinates = [
-        [,1],
+        [figureBody[0].getAttribute('posx'), figureBody[0].getAttribute('posy')],
+        [figureBody[1].getAttribute('posx'), figureBody[1].getAttribute('posy')],
+        [figureBody[2].getAttribute('posx'), figureBody[2].getAttribute('posy')],
+        [figureBody[3].getAttribute('posx'), figureBody[3].getAttribute('posy')],
     ]
 
+    for (let i = 0; i < coordinates.length; i++) {
+        if (coordinates[i][1] == 1 || document.querySelector(`[posx="${coordinates[i][0]}"][posy="${coordinates[i][1] - 1}"]`).classList.contains("set")) {
+            moving = false;
+            break;
+        }
+    }
+
+    if (moving) {
+        for (let i = 0; i < figureBody.length; i++) {
+            figureBody[i].classList.remove("figure");
+        }
+    
+        figureBody=[
+            document.querySelector(`[posx="${coordinates[0][0]}"][posy="${coordinates[0][1] - 1}"]`),
+            document.querySelector(`[posx="${coordinates[1][0]}"][posy="${coordinates[1][1] - 1}"]`),
+            document.querySelector(`[posx="${coordinates[2][0]}"][posy="${coordinates[2][1] - 1}"]`),
+            document.querySelector(`[posx="${coordinates[3][0]}"][posy="${coordinates[3][1] - 1}"]`),
+        ]
+    
+        for (let i = 0; i < figureBody.length; i++) {
+            figureBody[i].classList.add("figure");
+        }
+    } else {
+        for (let i = 0; i < figureBody.length; i++) {
+            figureBody[i].classList.remove("figure");
+            figureBody[i].classList.add("set");
+        }
+        create();
+    }
 }
 
+window.addEventListener('keydown', function(event) {
+    let coordinates  = [
+        [figureBody[0].getAttribute('posx'), figureBody[0].getAttribute('posy')],
+        [figureBody[1].getAttribute('posx'), figureBody[1].getAttribute('posy')],
+        [figureBody[2].getAttribute('posx'), figureBody[2].getAttribute('posy')],
+        [figureBody[3].getAttribute('posx'), figureBody[3].getAttribute('posy')],
+    ]
+
+    function key_move(a) {
+
+            let strafe = true;
+
+            for (let i = 0; i < coordinates.length; i++) {
+                if (Number(coordinates[i][0]) + a == 11 || Number(coordinates[i][0]) + a == 0 || document.querySelector(`[posx="${Number(coordinates[i][0])+a}"][posy="${coordinates[i][1]}"]`).classList.contains("set")) {
+                    strafe = false;
+                    break;
+                }
+            }
+
+            if (strafe) {
+                for (let i = 0; i < figureBody.length; i++) {
+                    figureBody[i].classList.remove("figure");
+                }
+        
+                figureBody=[
+                    document.querySelector(`[posx="${Number(coordinates[0][0]) + a}"][posy="${coordinates[0][1]}"]`),
+                    document.querySelector(`[posx="${Number(coordinates[1][0]) + a}"][posy="${coordinates[1][1]}"]`),
+                    document.querySelector(`[posx="${Number(coordinates[2][0]) + a}"][posy="${coordinates[2][1]}"]`),
+                    document.querySelector(`[posx="${Number(coordinates[3][0]) + a}"][posy="${coordinates[3][1]}"]`),
+                ]
+;
+                for (let i = 0; i < figureBody.length; i++) {
+                    figureBody[i].classList.add("figure");
+                }
+            }
+    }
+
+    function rotate() {
+        for (let i = 0; i < figureBody.length; i++) {
+            figureBody[i].classList.remove("figure");
+        }
+
+        figureBody=[
+            document.querySelector(`[posx="${Number(coordinates[0][0]) + a}"][posy="${coordinates[0][1]}"]`),
+            document.querySelector(`[posx="${Number(coordinates[1][0]) + a}"][posy="${coordinates[1][1]}"]`),
+            document.querySelector(`[posx="${Number(coordinates[2][0]) + a}"][posy="${coordinates[2][1]}"]`),
+            document.querySelector(`[posx="${Number(coordinates[3][0]) + a}"][posy="${coordinates[3][1]}"]`),
+        ]
+
+        for (let i = 0; i < figureBody.length; i++) {
+            figureBody[i].classList.add("figure");
+        }
+    }
+
+    if (event.keyCode == 37) {
+        key_move(-1);
+    }
+    if (event.keyCode == 39) {
+        key_move(1);
+    }
+    if (event.keyCode == 40) {
+        move();
+    }
+    if (event.keyCode == 38){
+        rotate();
+    }
+})
+
+setInterval(move, 500);
 
