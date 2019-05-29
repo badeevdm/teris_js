@@ -29,56 +29,255 @@ let mainArr = [
     [
         [0, 1],
         [0, 2],
-        [0, 3]
+        [0, 3],
+        //90
+        [
+            [-1, 1],
+            [0, 0],
+            [1, -1],
+            [2, -2],
+        ],
+        //180
+        [
+            [1, -1],
+            [0, 0],
+            [-1, 1],
+            [-2, 2],
+        ],
+        //270
+        [
+            [-1, 1],
+            [0, 0],
+            [1, -1],
+            [2, -2],
+        ],
+        //360
+        [
+            [1, -1],
+            [0, 0],
+            [-1, 1],
+            [-2, 2],
+        ],
     ],
 
     //квадрат
     [
         [1, 0],
         [0, 1],
-        [1, 1]
+        [1, 1],
+        //90
+        [
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ],
+        //180
+        [
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ],
+        //270
+        [
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ],
+        //360
+        [
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ],
     ],
     //угол (левый)
     [
         [1, 0],
         [0, 1],
-        [0, 2]
+        [0, 2],
+        //90
+        [
+            [0, 1],
+            [-1, 0],
+            [1, 0],
+            [2, -1],
+        ],
+        //180
+        [
+            [0, 1],
+            [-1, 2],
+            [-1, 0],
+            [-2, -1],
+        ],
+        //270
+        [
+            [0, -2],
+            [1, -1],
+            [-1, -1],
+            [-2, 0]
+        ],
+        //360
+        [
+            [0, 0],
+            [1, -1],
+            [1, 1],
+            [2, 2]
+        ],
     ],
     //угол (правый)
     [
         [1, 0],
         [1, 1],
-        [2, 1]
+        [1, 2],
+        //90
+        [
+            [0, 1],
+            [-1, 0],
+            [0, -1],
+            [1, -2],
+        ],
+        //180
+        [
+            [0, 0],
+            [0, 0],
+            [-1, 2],
+            [-1, 2],
+        ],
+        //270
+        [
+            [0, 0],
+            [1, 1],
+            [2, -1],
+            [1, -2]
+        ],
+        //360
+        [
+            [0, -1],
+            [0, -1],
+            [-1, 0],
+            [-1, 2]
+        ],
     ],
     //змейка (левый)
     [
         [1, 0],
         [1, 1],
-        [1, 2]
+        [2, 1],
+        //90
+        [
+            [1, 0],
+            [0, 1],
+            [-1, 0],
+            [-2, 1],
+        ],
+        //180
+        [
+            [-1, 0],
+            [0, -1],
+            [1, 0],
+            [2, -1],
+        ],
+        //270
+        [
+            [1, 0],
+            [0, 1],
+            [-1, 0],
+            [-2, 1],
+        ],
+        //360
+        [
+            [-1, 0],
+            [0, -1],
+            [1, 0],
+            [2, -1],
+        ],
     ],
     //змейка (правый)
     [
         [1, 0],
         [-1, 1],
-        [0, 1]
+        [0, 1],
+        //90
+        [
+            [0, 0],
+            [-1, 1],
+            [2, 0],
+            [1, 1],
+        ],
+        //180
+        [
+            [0, 0],
+            [1, -1],
+            [-2, 0],
+            [-1, -1],
+        ],
+        //270
+        [
+            [0, 0],
+            [-1, 1],
+            [2, 0],
+            [1, 1],
+        ],
+        //360
+        [
+            [0, 0],
+            [1, -1],
+            [-2, 0],
+            [-1, -1],
+        ],
     ],
     //обратная Т
     [
         [1, 0],
         [2, 0],
-        [1, 1]
+        [1, 1],
+        //90
+        [
+            [0, 2],
+            [-1, 1],
+            [-2, 0],
+            [0, 0],
+        ],
+        //180
+        [
+            [2, -1],
+            [1, 0],
+            [0, 1],
+            [0, -1],
+        ],
+        //270
+        [
+            [0, -1],
+            [1, 0],
+            [2, 1],
+            [0, 1],
+        ],
+        //360
+        [
+            [-2, 0],
+            [-1, -1],
+            [0, -2],
+            [0, 0],
+        ],
     ],
 ]
 
 let currentFigure = 0;
 let figureBody = 0;
+let rotate_el = 1;
 
 function create() {
     function getRandom(){
         return Math.round(Math.random()*(mainArr.length-1));
     }
 
-    currentFigure = getRandom();
+    rotate_el = 1;
+
+    currentFigure = 3;
 
     figureBody = [
         document.querySelector(`[posx="${x}"][posy="${y}"]`),
@@ -90,6 +289,7 @@ function create() {
     for (let i = 0; i < figureBody.length; i++) {
         figureBody[i].classList.add("figure");
     }
+
 }
 
 create();
@@ -172,20 +372,43 @@ window.addEventListener('keydown', function(event) {
     }
 
     function rotate() {
-        for (let i = 0; i < figureBody.length; i++) {
-            figureBody[i].classList.remove("figure");
+
+        let rotate_move = true;
+
+        for (let i = 0; i < coordinates.length; i++) {
+            if (Number(coordinates[i][0]) + mainArr[currentFigure][rotate_el+2][i][0] > 10 || Number(coordinates[i][1]) + mainArr[currentFigure][rotate_el+2][i][1] < 0 
+            || document.querySelector(`[posx="${Number(coordinates[i][0]) + mainArr[currentFigure][rotate_el+2][i][0]}"][posy="${+coordinates[i][1] + mainArr[currentFigure][rotate_el+2][i][1]}"]`).classList.contains("set")) {
+                rotate_move = false;
+                break;
+            }
         }
 
-        figureBody=[
-            document.querySelector(`[posx="${Number(coordinates[0][0]) + a}"][posy="${coordinates[0][1]}"]`),
-            document.querySelector(`[posx="${Number(coordinates[1][0]) + a}"][posy="${coordinates[1][1]}"]`),
-            document.querySelector(`[posx="${Number(coordinates[2][0]) + a}"][posy="${coordinates[2][1]}"]`),
-            document.querySelector(`[posx="${Number(coordinates[3][0]) + a}"][posy="${coordinates[3][1]}"]`),
-        ]
 
-        for (let i = 0; i < figureBody.length; i++) {
-            figureBody[i].classList.add("figure");
+        if (rotate_move) {
+            for (let i = 0; i < figureBody.length; i++) {
+                figureBody[i].classList.remove("figure");
+            }
+    
+            figureBody=[
+                document.querySelector(`[posx="${Number(coordinates[0][0]) + Number(mainArr[currentFigure][rotate_el+2][0][0])}"][posy="${+coordinates[0][1] + mainArr[currentFigure][rotate_el+2][0][1]}"]`),
+                document.querySelector(`[posx="${Number(coordinates[1][0]) + mainArr[currentFigure][rotate_el+2][1][0]}"][posy="${+coordinates[1][1] + mainArr[currentFigure][rotate_el+2][1][1]}"]`),
+                document.querySelector(`[posx="${Number(coordinates[2][0]) + mainArr[currentFigure][rotate_el+2][2][0]}"][posy="${+coordinates[2][1] + mainArr[currentFigure][rotate_el+2][2][1]}"]`),
+                document.querySelector(`[posx="${Number(coordinates[3][0]) + mainArr[currentFigure][rotate_el+2][3][0]}"][posy="${+coordinates[3][1] + mainArr[currentFigure][rotate_el+2][3][1]}"]`),
+            ]
+    
+            console.log(figureBody);
+    
+            for (let i = 0; i < figureBody.length; i++) {
+                figureBody[i].classList.add("figure");
+            }
+
+            if (rotate_el < 4) {
+                rotate_el++;
+            } else {
+                rotate_el = 1;
+            }
         }
+
     }
 
     if (event.keyCode == 37) {
@@ -198,9 +421,10 @@ window.addEventListener('keydown', function(event) {
         move();
     }
     if (event.keyCode == 38){
+        console.log(rotate_el);
         rotate();
     }
 })
 
-setInterval(move, 500);
+setInterval(move, 3000);
 
