@@ -269,6 +269,7 @@ let mainArr = [
 let currentFigure = 0;
 let figureBody = 0;
 let rotate_el = 1;
+let score = 0;
 
 function create() {
     function getRandom(){
@@ -296,7 +297,6 @@ create();
 
 function move() {
     moving = true;
-
     let coordinates = [
         [figureBody[0].getAttribute('posx'), figureBody[0].getAttribute('posy')],
         [figureBody[1].getAttribute('posx'), figureBody[1].getAttribute('posy')],
@@ -338,6 +338,8 @@ function move() {
                 if (document.querySelector(`[posx="${j}"][posy="${i}"]`).classList.contains("set")) {
                     count++;
                     if (count == 10) {
+                        score+=10;
+                        document.querySelector(".count_score").textContent = score + "";
                         for (let m = 1; m < 11; m++) {
                             document.querySelector(`[posx="${m}"][posy="${i}"]`).classList.remove("set");
                         }
