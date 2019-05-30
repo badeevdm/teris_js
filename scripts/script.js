@@ -277,7 +277,7 @@ function create() {
 
     rotate_el = 1;
 
-    currentFigure = 3;
+    currentFigure = getRandom();
 
     figureBody = [
         document.querySelector(`[posx="${x}"][posy="${y}"]`),
@@ -296,6 +296,7 @@ create();
 
 function move() {
     moving = true;
+
     let coordinates = [
         [figureBody[0].getAttribute('posx'), figureBody[0].getAttribute('posy')],
         [figureBody[1].getAttribute('posx'), figureBody[1].getAttribute('posy')],
@@ -329,6 +330,44 @@ function move() {
         for (let i = 0; i < figureBody.length; i++) {
             figureBody[i].classList.remove("figure");
             figureBody[i].classList.add("set");
+        }
+
+        for (let i = 1; i < 15; i++) {
+            let count = 0;
+            for (let j=1; j <= 10; j++) {
+                if (document.querySelector(`[posx="${j}"][posy="${i}"]`).classList.contains("set")) {
+                    count++;
+                    if (count == 10) {
+                        for (let m = 1; m < 11; m++) {
+                            document.querySelector(`[posx="${m}"][posy="${i}"]`).classList.remove("set");
+                        }
+
+                        let currentState = document.querySelectorAll(".set");
+                        let newSet = [];
+
+                        for (let l = 0; l < currentState.length; l++) {
+                            setCoordinates = [currentState[l].getAttribute("posx"), currentState[l].getAttribute("posy")];
+
+                            if (setCoordinates[1] > i) {
+                                currentState[l].classList.remove("set");
+                                newSet.push(document.querySelector(`[posx="${setCoordinates[0]}"][posy="${setCoordinates[1] - 1}"]`));
+                            }
+                        }
+
+                        for (let i = 0; i < newSet.length; i++) {
+                            newSet[i].classList.add("set");
+                        }
+                        i--;
+                    }
+                }
+            }
+        }
+        for (let i = 1; i < 11; i++) {
+            if (document.querySelector(`[posx="${i}"][posy="${15}"]`).classList.contains("set")) {
+                clearInterval(t);
+                alert("Game Over");
+                break;
+            }
         }
         create();
     }
@@ -426,5 +465,5 @@ window.addEventListener('keydown', function(event) {
     }
 })
 
-setInterval(move, 3000);
+let t  = setInterval(move, 500);
 
