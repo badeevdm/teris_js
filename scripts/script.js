@@ -22,6 +22,26 @@ for (let i = 18; i >= 1; i--) {
     }
 }
 
+let nextBlock = document.querySelector('.next-block');
+
+for (let i = 1; i <= 36; i++) {
+    let excel = document.createElement('div');
+    excel.classList.add('excel');
+    nextBlock.appendChild(excel); 
+}
+
+let excelNext = document.querySelectorAll('.next-block .excel');
+count = 0;
+
+for (let i = 6; i >= 1; i--) {
+    for (let j = 1; j <= 6; j++) {
+        excelNext[count].setAttribute('posX', j);
+        excelNext[count].setAttribute('posY', i);
+        count++;
+    }
+}
+
+let nextX = 3, nextY = 3;
 let x = 5, y = 15;
 
 let mainArr=[[[0,1],[0,2],[0,3],[[-1,1],[0,0],[1,-1],[2,-2],],[[1,-1],[0,0],[-1,1],[-2,2],],[[-1,1],[0,0],[1,-1],[2,-2],],[[1,-1],[0,0],[-1,1],[-2,2],],],[[1,0],[0,1],[1,1],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],],[[1,0],[0,1],[0,2],[[0,1],[-1,0],[1,0],[2,-1],],[[0,1],[-1,2],[-1,0],[-2,-1],],[[0,-2],[1,-1],[-1,-1],[-2,0]],[[0,0],[1,-1],[1,1],[2,2]],],[[1,0],[1,1],[1,2],[[0,1],[-1,0],[0,-1],[1,-2],],[[0,0],[0,0],[-1,2],[-1,2],],[[0,0],[1,1],[2,-1],[1,-2]],[[0,-1],[0,-1],[-1,0],[-1,2]],],[[1,0],[1,1],[2,1],[[1,0],[0,1],[-1,0],[-2,1],],[[-1,0],[0,-1],[1,0],[2,-1],],[[1,0],[0,1],[-1,0],[-2,1],],[[-1,0],[0,-1],[1,0],[2,-1],],],[[1,0],[-1,1],[0,1],[[0,0],[-1,1],[2,0],[1,1],],[[0,0],[1,-1],[-2,0],[-1,-1],],[[0,0],[-1,1],[2,0],[1,1],],[[0,0],[1,-1],[-2,0],[-1,-1],],],[[1,0],[2,0],[1,1],[[0,2],[-1,1],[-2,0],[0,0],],[[2,-1],[1,0],[0,1],[0,-1],],[[0,-1],[1,0],[2,1],[0,1],],[[-2,0],[-1,-1],[0,-2],[0,0],],],]
@@ -33,6 +53,9 @@ let score = 0;
 let numColor = 0;
 let modal = document.querySelector('.modal');
 let bg_modal = document.querySelector('.bg_modal');
+let nextColor;
+let nextFigure;
+let figureBodyNext;
 
 var colorArray = ['#FEA47F', '#25CCF7', '#EAB543', '#55E6C1', '#82589F', '#FD7272', '#182C61', '#2C3A47'];
 
@@ -61,14 +84,21 @@ function clearFigure(arr) {
     }
 }
 
+
 function create() {
     function getRandom(){
         return Math.round(Math.random()*(mainArr.length-1));
     }
-    numColor = Math.round(Math.random()*(colorArray.length-1));
+
     rotate_el = 1;
 
-    currentFigure = getRandom();
+    if (!nextFigure && !numColor) {
+        currentFigure = getRandom();
+        numColor = Math.round(Math.random()*(colorArray.length-1));
+    } else {
+        currentFigure = nextFigure;
+        numColor = nextColor;
+    }
 
     figureBody = [
         document.querySelector(`[posx="${x}"][posy="${y}"]`),
@@ -78,6 +108,21 @@ function create() {
     ]
 
     renderFigure(figureBody, numColor);
+
+    nextColor = Math.round(Math.random()*(colorArray.length-1));
+    nextFigure = getRandom();
+
+    if (figureBodyNext) {
+        clearFigure(figureBodyNext);
+    }
+
+    figureBodyNext = [
+            document.querySelector(`.next-block [posx="${nextX}"][posy="${nextY}"]`),
+            document.querySelector(`.next-block [posx="${nextX + mainArr[nextFigure][0][0]}"][posy="${nextY + mainArr[nextFigure][0][1]}"]`),
+            document.querySelector(`.next-block [posx="${nextX + mainArr[nextFigure][1][0]}"][posy="${nextY + mainArr[nextFigure][1][1]}"]`),
+            document.querySelector(`.next-block [posx="${nextX + mainArr[nextFigure][2][0]}"][posy="${nextY + mainArr[nextFigure][2][1]}"]`),
+    ]
+    renderFigure(figureBodyNext, nextColor);
 
 }
 

@@ -10,10 +10,9 @@ body {
 
 .tetris-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     height: 100vh;
-    flex-direction: column;
 
     background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
     background-size: 400%;
@@ -32,7 +31,6 @@ body {
     position: relative;
     overflow: hidden;
     border: 1px solid black;
-    margin: 0 auto;
     width: 502px;
     height: 700px;
     background: white;
@@ -61,7 +59,6 @@ body {
 .score {
     margin: 40px 0;
     width: 300px;
-    height: 100px;
     text-align: center;
     border: 1px solid #ccc;
     display: flex;
@@ -69,6 +66,12 @@ body {
     justify-content: center;
     font-family: 'Roboto', sans-serif;
     background: white;
+    color: #5258cf;
+    border-radius: 100px;
+}
+
+.count_score {
+    font-weight: bold;
 }
 
 .bg_modal {
@@ -152,4 +155,12 @@ body {
     display: block;
     margin: auto;
     width: 100%;
+}
+
+.next-block {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 300px;
+    background: white;
 }
