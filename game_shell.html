@@ -14,12 +14,27 @@
     <div class="tetris-wrapper">
         <div class="main">
 
-            
+
         </div>
         <div class="score">
-            <p>Ваш счет: <span class="count_score"></span></p>
+            <p>Ваш счет: <span class="count_score">0</span></p>
         </div>
     </div>
+
+    <div class="end_game modal">
+        <div class="modal-wrapper">
+            <div class="modal-container">
+                <div class="close" id="modal_close">
+                        <img src="https://img.icons8.com/ios/50/000000/delete-sign.png">
+                </div>
+                <h3>Game Over</h3>
+                <p>Вы набрали <span class="count_score">0</span> очков</p>
+                <a href="/game_shell.html">Начать заново?</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg_modal"></div>
 
     <script src="scripts/script.js"></script>
 </body>

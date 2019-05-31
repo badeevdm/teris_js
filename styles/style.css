@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 * {
-    font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
 }
 
@@ -13,7 +14,19 @@ body {
     align-items: center;
     height: 100vh;
     flex-direction: column;
+
+    background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+    background-size: 400%;
+    animation: colorSpin 30s linear infinite;
 }
+
+
+@keyframes colorSpin{
+    25%{background-position:0 100%}
+    50%{background-position:100% 100%}
+    75%{background-position:100% 0}
+    /* 100%{filter:hue-rotate(360deg)} */
+  }
 
 .main {
     position: relative;
@@ -22,6 +35,7 @@ body {
     margin: 0 auto;
     width: 502px;
     height: 700px;
+    background: white;
 }
 
 .tetris {
@@ -40,7 +54,7 @@ body {
 }
 
 .figure, .set {
-    background-color: #1e488c;
+    /* background-color: #1e488c; */
     border: 1px solid white;
 }
 
@@ -53,4 +67,89 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    background: white;
+}
+
+.bg_modal {
+    position: absolute;
+    background: black;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 1s all;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    display: none;
+    opacity: 0;
+    transition: 1s all;
+}
+
+.modal.show {
+    z-index: 1;
+    display: block;
+    opacity: 1;
+}
+
+.modal-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-container {
+    width: 400px;
+    margin: auto;
+    background: #5258cf;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+}
+
+.modal-container h3 {
+    font-weight: bold;
+}
+
+.modal-container a {
+    color: #fec66d;
+}
+
+.modal.show {
+
+}
+
+.bg_modal.show {
+ z-index: 0;
+ opacity: .75;
+}
+
+.close {
+    width: 35px;
+    height: 35px;
+    background: white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.close img {
+    display: block;
+    margin: auto;
+    width: 100%;
 }

@@ -24,258 +24,48 @@ for (let i = 18; i >= 1; i--) {
 
 let x = 5, y = 15;
 
-let mainArr = [
-    //палка
-    [
-        [0, 1],
-        [0, 2],
-        [0, 3],
-        //90
-        [
-            [-1, 1],
-            [0, 0],
-            [1, -1],
-            [2, -2],
-        ],
-        //180
-        [
-            [1, -1],
-            [0, 0],
-            [-1, 1],
-            [-2, 2],
-        ],
-        //270
-        [
-            [-1, 1],
-            [0, 0],
-            [1, -1],
-            [2, -2],
-        ],
-        //360
-        [
-            [1, -1],
-            [0, 0],
-            [-1, 1],
-            [-2, 2],
-        ],
-    ],
-
-    //квадрат
-    [
-        [1, 0],
-        [0, 1],
-        [1, 1],
-        //90
-        [
-            [0, 0],
-            [0, 0],
-            [0, 0],
-            [0, 0]
-        ],
-        //180
-        [
-            [0, 0],
-            [0, 0],
-            [0, 0],
-            [0, 0]
-        ],
-        //270
-        [
-            [0, 0],
-            [0, 0],
-            [0, 0],
-            [0, 0]
-        ],
-        //360
-        [
-            [0, 0],
-            [0, 0],
-            [0, 0],
-            [0, 0]
-        ],
-    ],
-    //угол (левый)
-    [
-        [1, 0],
-        [0, 1],
-        [0, 2],
-        //90
-        [
-            [0, 1],
-            [-1, 0],
-            [1, 0],
-            [2, -1],
-        ],
-        //180
-        [
-            [0, 1],
-            [-1, 2],
-            [-1, 0],
-            [-2, -1],
-        ],
-        //270
-        [
-            [0, -2],
-            [1, -1],
-            [-1, -1],
-            [-2, 0]
-        ],
-        //360
-        [
-            [0, 0],
-            [1, -1],
-            [1, 1],
-            [2, 2]
-        ],
-    ],
-    //угол (правый)
-    [
-        [1, 0],
-        [1, 1],
-        [1, 2],
-        //90
-        [
-            [0, 1],
-            [-1, 0],
-            [0, -1],
-            [1, -2],
-        ],
-        //180
-        [
-            [0, 0],
-            [0, 0],
-            [-1, 2],
-            [-1, 2],
-        ],
-        //270
-        [
-            [0, 0],
-            [1, 1],
-            [2, -1],
-            [1, -2]
-        ],
-        //360
-        [
-            [0, -1],
-            [0, -1],
-            [-1, 0],
-            [-1, 2]
-        ],
-    ],
-    //змейка (левый)
-    [
-        [1, 0],
-        [1, 1],
-        [2, 1],
-        //90
-        [
-            [1, 0],
-            [0, 1],
-            [-1, 0],
-            [-2, 1],
-        ],
-        //180
-        [
-            [-1, 0],
-            [0, -1],
-            [1, 0],
-            [2, -1],
-        ],
-        //270
-        [
-            [1, 0],
-            [0, 1],
-            [-1, 0],
-            [-2, 1],
-        ],
-        //360
-        [
-            [-1, 0],
-            [0, -1],
-            [1, 0],
-            [2, -1],
-        ],
-    ],
-    //змейка (правый)
-    [
-        [1, 0],
-        [-1, 1],
-        [0, 1],
-        //90
-        [
-            [0, 0],
-            [-1, 1],
-            [2, 0],
-            [1, 1],
-        ],
-        //180
-        [
-            [0, 0],
-            [1, -1],
-            [-2, 0],
-            [-1, -1],
-        ],
-        //270
-        [
-            [0, 0],
-            [-1, 1],
-            [2, 0],
-            [1, 1],
-        ],
-        //360
-        [
-            [0, 0],
-            [1, -1],
-            [-2, 0],
-            [-1, -1],
-        ],
-    ],
-    //обратная Т
-    [
-        [1, 0],
-        [2, 0],
-        [1, 1],
-        //90
-        [
-            [0, 2],
-            [-1, 1],
-            [-2, 0],
-            [0, 0],
-        ],
-        //180
-        [
-            [2, -1],
-            [1, 0],
-            [0, 1],
-            [0, -1],
-        ],
-        //270
-        [
-            [0, -1],
-            [1, 0],
-            [2, 1],
-            [0, 1],
-        ],
-        //360
-        [
-            [-2, 0],
-            [-1, -1],
-            [0, -2],
-            [0, 0],
-        ],
-    ],
-]
+let mainArr=[[[0,1],[0,2],[0,3],[[-1,1],[0,0],[1,-1],[2,-2],],[[1,-1],[0,0],[-1,1],[-2,2],],[[-1,1],[0,0],[1,-1],[2,-2],],[[1,-1],[0,0],[-1,1],[-2,2],],],[[1,0],[0,1],[1,1],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],],[[1,0],[0,1],[0,2],[[0,1],[-1,0],[1,0],[2,-1],],[[0,1],[-1,2],[-1,0],[-2,-1],],[[0,-2],[1,-1],[-1,-1],[-2,0]],[[0,0],[1,-1],[1,1],[2,2]],],[[1,0],[1,1],[1,2],[[0,1],[-1,0],[0,-1],[1,-2],],[[0,0],[0,0],[-1,2],[-1,2],],[[0,0],[1,1],[2,-1],[1,-2]],[[0,-1],[0,-1],[-1,0],[-1,2]],],[[1,0],[1,1],[2,1],[[1,0],[0,1],[-1,0],[-2,1],],[[-1,0],[0,-1],[1,0],[2,-1],],[[1,0],[0,1],[-1,0],[-2,1],],[[-1,0],[0,-1],[1,0],[2,-1],],],[[1,0],[-1,1],[0,1],[[0,0],[-1,1],[2,0],[1,1],],[[0,0],[1,-1],[-2,0],[-1,-1],],[[0,0],[-1,1],[2,0],[1,1],],[[0,0],[1,-1],[-2,0],[-1,-1],],],[[1,0],[2,0],[1,1],[[0,2],[-1,1],[-2,0],[0,0],],[[2,-1],[1,0],[0,1],[0,-1],],[[0,-1],[1,0],[2,1],[0,1],],[[-2,0],[-1,-1],[0,-2],[0,0],],],]
 
 let currentFigure = 0;
 let figureBody = 0;
 let rotate_el = 1;
 let score = 0;
+let numColor = 0;
+let modal = document.querySelector('.modal');
+let bg_modal = document.querySelector('.bg_modal');
+
+var colorArray = ['#FEA47F', '#25CCF7', '#EAB543', '#55E6C1', '#82589F', '#FD7272', '#182C61', '#2C3A47'];
+
+function getCurrentCoordinates() {
+    CurrentCoordinates = [
+        [figureBody[0].getAttribute('posx'), figureBody[0].getAttribute('posy')],
+        [figureBody[1].getAttribute('posx'), figureBody[1].getAttribute('posy')],
+        [figureBody[2].getAttribute('posx'), figureBody[2].getAttribute('posy')],
+        [figureBody[3].getAttribute('posx'), figureBody[3].getAttribute('posy')],
+    ]
+
+    return CurrentCoordinates;
+}
+
+function renderFigure(arr, color) {
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].classList.add("figure");
+        arr[i].style.backgroundColor = colorArray[color];
+    }
+}
+
+function clearFigure(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].classList.remove("figure");
+        arr[i].style.backgroundColor = '';
+    }
+}
 
 function create() {
     function getRandom(){
         return Math.round(Math.random()*(mainArr.length-1));
     }
-
+    numColor = Math.round(Math.random()*(colorArray.length-1));
     rotate_el = 1;
 
     currentFigure = getRandom();
@@ -287,22 +77,14 @@ function create() {
         document.querySelector(`[posx="${x + mainArr[currentFigure][2][0]}"][posy="${y + mainArr[currentFigure][2][1]}"]`),
     ]
 
-    for (let i = 0; i < figureBody.length; i++) {
-        figureBody[i].classList.add("figure");
-    }
+    renderFigure(figureBody, numColor);
 
 }
 
-create();
-
 function move() {
     moving = true;
-    let coordinates = [
-        [figureBody[0].getAttribute('posx'), figureBody[0].getAttribute('posy')],
-        [figureBody[1].getAttribute('posx'), figureBody[1].getAttribute('posy')],
-        [figureBody[2].getAttribute('posx'), figureBody[2].getAttribute('posy')],
-        [figureBody[3].getAttribute('posx'), figureBody[3].getAttribute('posy')],
-    ]
+    endGame = false;
+    let coordinates = getCurrentCoordinates();
 
     for (let i = 0; i < coordinates.length; i++) {
         if (coordinates[i][1] == 1 || document.querySelector(`[posx="${coordinates[i][0]}"][posy="${coordinates[i][1] - 1}"]`).classList.contains("set")) {
@@ -312,9 +94,7 @@ function move() {
     }
 
     if (moving) {
-        for (let i = 0; i < figureBody.length; i++) {
-            figureBody[i].classList.remove("figure");
-        }
+        clearFigure(figureBody);
     
         figureBody=[
             document.querySelector(`[posx="${coordinates[0][0]}"][posy="${coordinates[0][1] - 1}"]`),
@@ -323,9 +103,7 @@ function move() {
             document.querySelector(`[posx="${coordinates[3][0]}"][posy="${coordinates[3][1] - 1}"]`),
         ]
     
-        for (let i = 0; i < figureBody.length; i++) {
-            figureBody[i].classList.add("figure");
-        }
+        renderFigure(figureBody, numColor);
     } else {
         for (let i = 0; i < figureBody.length; i++) {
             figureBody[i].classList.remove("figure");
@@ -342,6 +120,7 @@ function move() {
                         document.querySelector(".count_score").textContent = score + "";
                         for (let m = 1; m < 11; m++) {
                             document.querySelector(`[posx="${m}"][posy="${i}"]`).classList.remove("set");
+                            document.querySelector(`[posx="${m}"][posy="${i}"]`).style.backgroundColor = '';
                         }
 
                         let currentState = document.querySelectorAll(".set");
@@ -352,12 +131,15 @@ function move() {
 
                             if (setCoordinates[1] > i) {
                                 currentState[l].classList.remove("set");
-                                newSet.push(document.querySelector(`[posx="${setCoordinates[0]}"][posy="${setCoordinates[1] - 1}"]`));
+                                colorCurrentSet = currentState[l].style.backgroundColor;
+                                currentState[l].style.backgroundColor = '';
+                                newSet.push([document.querySelector(`[posx="${setCoordinates[0]}"][posy="${setCoordinates[1] - 1}"]`), colorCurrentSet]);
                             }
                         }
 
                         for (let i = 0; i < newSet.length; i++) {
-                            newSet[i].classList.add("set");
+                            newSet[i][0].classList.add("set");
+                            newSet[i][0].style.backgroundColor = newSet[i][1];
                         }
                         i--;
                     }
@@ -367,21 +149,21 @@ function move() {
         for (let i = 1; i < 11; i++) {
             if (document.querySelector(`[posx="${i}"][posy="${15}"]`).classList.contains("set")) {
                 clearInterval(t);
-                alert("Game Over");
+                modal.classList.add('show');
+                bg_modal.classList.add('show');
+                document.querySelector(".modal .count_score").textContent = score + "";
+                endGame = true;
                 break;
             }
         }
-        create();
+        if (!endGame) {
+            create();
+        }
     }
 }
 
 window.addEventListener('keydown', function(event) {
-    let coordinates  = [
-        [figureBody[0].getAttribute('posx'), figureBody[0].getAttribute('posy')],
-        [figureBody[1].getAttribute('posx'), figureBody[1].getAttribute('posy')],
-        [figureBody[2].getAttribute('posx'), figureBody[2].getAttribute('posy')],
-        [figureBody[3].getAttribute('posx'), figureBody[3].getAttribute('posy')],
-    ]
+    let coordinates = getCurrentCoordinates();
 
     function key_move(a) {
 
@@ -395,9 +177,7 @@ window.addEventListener('keydown', function(event) {
             }
 
             if (strafe) {
-                for (let i = 0; i < figureBody.length; i++) {
-                    figureBody[i].classList.remove("figure");
-                }
+                clearFigure(figureBody);
         
                 figureBody=[
                     document.querySelector(`[posx="${Number(coordinates[0][0]) + a}"][posy="${coordinates[0][1]}"]`),
@@ -405,10 +185,8 @@ window.addEventListener('keydown', function(event) {
                     document.querySelector(`[posx="${Number(coordinates[2][0]) + a}"][posy="${coordinates[2][1]}"]`),
                     document.querySelector(`[posx="${Number(coordinates[3][0]) + a}"][posy="${coordinates[3][1]}"]`),
                 ]
-;
-                for (let i = 0; i < figureBody.length; i++) {
-                    figureBody[i].classList.add("figure");
-                }
+
+                renderFigure(figureBody, numColor);
             }
     }
 
@@ -426,9 +204,7 @@ window.addEventListener('keydown', function(event) {
 
 
         if (rotate_move) {
-            for (let i = 0; i < figureBody.length; i++) {
-                figureBody[i].classList.remove("figure");
-            }
+            clearFigure(figureBody);
     
             figureBody=[
                 document.querySelector(`[posx="${Number(coordinates[0][0]) + Number(mainArr[currentFigure][rotate_el+2][0][0])}"][posy="${+coordinates[0][1] + mainArr[currentFigure][rotate_el+2][0][1]}"]`),
@@ -436,12 +212,9 @@ window.addEventListener('keydown', function(event) {
                 document.querySelector(`[posx="${Number(coordinates[2][0]) + mainArr[currentFigure][rotate_el+2][2][0]}"][posy="${+coordinates[2][1] + mainArr[currentFigure][rotate_el+2][2][1]}"]`),
                 document.querySelector(`[posx="${Number(coordinates[3][0]) + mainArr[currentFigure][rotate_el+2][3][0]}"][posy="${+coordinates[3][1] + mainArr[currentFigure][rotate_el+2][3][1]}"]`),
             ]
+
     
-            console.log(figureBody);
-    
-            for (let i = 0; i < figureBody.length; i++) {
-                figureBody[i].classList.add("figure");
-            }
+            renderFigure(figureBody, numColor);
 
             if (rotate_el < 4) {
                 rotate_el++;
@@ -462,10 +235,19 @@ window.addEventListener('keydown', function(event) {
         move();
     }
     if (event.keyCode == 38){
-        console.log(rotate_el);
         rotate();
     }
 })
 
+create();
+
 let t  = setInterval(move, 500);
+
+let close_modal = document.querySelector('#modal_close');
+console.log(close_modal);
+
+close_modal.onclick = () => {
+    modal.classList.remove('show');
+    bg_modal.classList.remove('show');
+}
 
